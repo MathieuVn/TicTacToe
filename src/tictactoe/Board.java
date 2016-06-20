@@ -55,6 +55,17 @@ public class Board {
         return true;
     }
     
+    public boolean isEmpty() {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if (!board[i][j].isBlank()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
     public boolean weGotWinner(Square player) {
         // Rows
         for (int row = 0; row < ROWS; row++) {
@@ -101,7 +112,20 @@ public class Board {
         }
     }
     
-    
+    public void playSquare(Square player, int move) {
+        int col = (int) move % 10;
+        int row = (int) move / 10;
+        if (row > 3 || col > 3 || row <= 0 || col <= 0 ) {
+            System.out.println("Please enter a valid case [1-3][1-3]");
+            playSquare(player, 0);
+        } else if (getBoardCase(row - 1, col - 1) == Square.BLANK) {
+            setBoardCase(row - 1, col - 1, player);
+        } else {
+            System.out.println("You can't play on this case");
+            playSquare(player, 0);
+        }
+    }
+       
     // Getters and Setters
     public Cell[][] getBoard() {
         return board;
