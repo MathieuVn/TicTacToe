@@ -3,16 +3,19 @@
 package tictactoe;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Board {
     // Properties
     public static final int ROWS = 3;
     public static final int COLS = 3;
     public Cell[][] board;
+    Scanner scanner;
     
     // Constructors
     public Board() {
         board = new Cell[ROWS][COLS];
+        scanner = new Scanner(System.in);
         for (int row = 0; row < ROWS; row++) {
             for (int col = 0; col < COLS; col++) {
                 board[row][col] = new Cell(row, col);
@@ -82,6 +85,22 @@ public class Board {
         }
         return false;
     }
+    
+    public void playSquare(Square player) {
+        int move = scanner.nextInt();
+        int col = (int) move % 10;
+        int row = (int) move / 10;
+        if (row > 3 || col > 3 || row <= 0 || col <= 0 ) {
+            System.out.println("Please enter a valid case [1-3][1-3]");
+            playSquare(player);
+        } else if (getBoardCase(row - 1, col - 1) == Square.BLANK) {
+            setBoardCase(row - 1, col - 1, player);
+        } else {
+            System.out.println("You can't play on this case");
+            playSquare(player);
+        }
+    }
+    
     
     // Getters and Setters
     public Cell[][] getBoard() {
