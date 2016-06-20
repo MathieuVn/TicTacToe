@@ -7,7 +7,7 @@ public class TicTacToe {
 
     final int BLANK = 0;
     final int CROSS = 1;
-    final int CIRCLE = -1;
+    final int NOUGHT = -1;
     
     int[][] board = new int[3][3];
     Scanner scanner = new Scanner(System.in);
@@ -44,7 +44,7 @@ public class TicTacToe {
             System.out.println("Please enter a valid case [1-3][1-3]");
             circlePlay();
         } else if (board[i - 1][j - 1] == BLANK) {
-            board[i - 1][j - 1] = CIRCLE;
+            board[i - 1][j - 1] = NOUGHT;
         } else {
             System.out.println("You can't play on this case");
             circlePlay();
@@ -94,11 +94,11 @@ public class TicTacToe {
             String s = "|";
             for (int j = 0; j < 3; j++) {
                 switch (board[i][j]) {
-                    case -1: s += "O";
+                    case NOUGHT: s += "O";
                         break;
-                    case 0: s += " ";
+                    case BLANK: s += " ";
                         break;
-                    case 1: s += "X";
+                    case CROSS: s += "X";
                         break;  
                 }
                 s += "|";

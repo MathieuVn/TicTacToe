@@ -2,11 +2,12 @@
  */
 package tictactoe;
 
-public enum Player {
+public enum Square {
+    BLANK,
     CROSS,
     NOUGHT;
     
-    public Player opposite() {
+    public Square opposite() {
         return this == CROSS ? NOUGHT : CROSS;
     }    
 }
